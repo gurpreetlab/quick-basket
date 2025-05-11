@@ -15,9 +15,18 @@ Route::get('/', function () {
 })->name('home');
 
 // Auth Routes
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
+Route::middleware('guest')->group(function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'authenticate'])->name('login.post');
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'registerUser'])->name('register.post');
+    Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});
 
 // Product Routes
 Route::prefix('products')->group(function () {

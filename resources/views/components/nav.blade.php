@@ -50,6 +50,7 @@
                     <li class="dropdown">
                         <div class="dropdown">
                             <span class="dropdown-toggle cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://avatar.iran.liara.run/public/32" width="32" height="32" class="object-fit-cover rounded-circle me-2" alt="{{ auth()->user()->name }}">
                                 {{ auth()->user()->name }}
                             </span>
                             <ul class="dropdown-menu">
@@ -57,7 +58,10 @@
                                     <a href="/profile" class="dropdown-item">Profile</a>
                                 </li>
                                 <li>
-                                    <a method="post" href="/logout" as="button" class="dropdown-item">Logout</a>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>

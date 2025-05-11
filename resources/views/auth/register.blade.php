@@ -19,25 +19,38 @@
                             <small>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe autem non facilis optio nemo vel corporis laudantium nostrum fugit esse ea minus provident vitae quae, labore accusamus explicabo quo voluptatibus?</small>
                         </div>
 
-                        <form class="w-100">
+                        <form class="w-100" action="{{ route('register.post') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="full_name" class="form-label">Full Name</label>
-                                <input type="full_name" id="full_name" class="form-control" placeholder="John Doe">
+                                <input type="full_name" id="full_name" name="name" class="form-control" placeholder="John Doe" value="{{ old('name') }}">
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" placeholder="name@example.com">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" value="{{ old('email') }}">
+                                @error('email')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="tel" id="phone" class="form-control" placeholder="John Doe">
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="John Doe" value="{{ old('phone') }}">
+                                @error('phone')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" class="form-control" placeholder="Password">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                                @error('password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3 mt-4">

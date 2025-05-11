@@ -15,10 +15,8 @@
 /* nav */
 nav {
     box-shadow: 0 1px 8px 0 var(--shadow);
-    position: sticky;
     top: 0;
     background: var(--white);
-    z-index: 99;
 }
 
 .nav-dropdown {

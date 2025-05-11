@@ -19,15 +19,22 @@
                             <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, minima. </small>
                         </div>
 
-                        <form class="w-100">
+                        <form class="w-100" action="{{ route('login.post') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" placeholder="name@example.com">
+                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" value="{{ old('email') }}">
+                                @error('email')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" class="form-control" placeholder="Password">
+                                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                                @error('password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3 d-flex align-items-center justify-content-between">
@@ -45,7 +52,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <button class="btn btn-dark py-3 w-100">Login</button>
+                                <button type="submit" class="btn btn-dark py-3 w-100">Login</button>
                             </div>
 
                             <div class="mb-3 text-center">
